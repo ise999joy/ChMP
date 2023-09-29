@@ -1,31 +1,24 @@
 def f(x):
-    return x**4 + 2*x**3 + 2*x**2 + 6*x - 5
-def df(x):
-    return 4*x**3 + 6*x**2 + 4*x + 6
-def combined_method(f, df, a, b, epsilon):
-    max_iterations = 1000
-    iteration = 0
-    while iteration < max_iterations:
-        # Метод бісекції
-        c = (a + b) / 2
-        if abs(f(c)) < epsilon:
-            return c
-        c = c - f(c) / df(c)
+    return 6 * x**4 + 8 * x**3 - 24 * x**2 - 7
 
-        if abs(f(c)) < epsilon:
+def df(x):
+    return 24 * x**3 + 24 * x**2 - 48 * x
+
+def combined_method(a, b, epsilon):
+    while (b - a) >= epsilon:
+        c = (a + b) / 2
+        if f(c) == 0:
             return c
         if f(a) * f(c) < 0:
             b = c
         else:
             a = c
+    return (a + b) / 2
 
-        iteration += 1
-    return None  # Розв'язок не знайдено
-a = 0.0  # Ліва межа інтервалу
-b = 2.0  # Права межа інтервалу
-epsilon = 0.0001  # Точність
-result = combined_method(f, df, a, b, epsilon)
-if result is not None:
-    print(f"Розв'язок: {result:.4f}")
-else:
-    print("Не вдалося знайти розв'язок.")
+# Використання комбінованого методу для інтервалу [-3, -2]
+result1 = combined_method(-3, -2, 0.0001)
+print("Результат комбінованого методу на інтервалі [-3, -2]:", result1)
+
+# Використання комбінованого методу для інтервалу [0, 1]
+result2 = combined_method(0, 1, 0.0001)
+print("Результат комбінованого методу на інтервалі [0, 1]:", result2)
