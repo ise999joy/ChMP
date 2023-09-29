@@ -1,28 +1,24 @@
 def f(x):
-    return 6*x**4 + 8*x**3 - 24*x**2 - 7
+    return 6 * x**4 + 8 * x**3 - 24 * x**2 - 7
 
 def df(x):
-    return 24*x**3 + 24*x**2 - 48*x
+    return 24 * x**3 + 24 * x**2 - 48 * x
 
-def newton_method(f, df, x0, tol=1e-4, max_iter=100):
+def newton_method(x0, epsilon, max_iterations):
     x = x0
-    for i in range(max_iter):
-        fx = f(x)
-        if abs(fx) < tol:
-            return x
-        dfx = df(x)
-        if dfx == 0:
-            return None  # Збіжність припинена, оскільки похідна дорівнює нулю.
-        x = x - fx / dfx
-    return None  # Збіжність не досягнута за максимальну кількість ітерацій.
+    iteration = 0
+    while iteration < max_iterations:
+        x_new = x - f(x) / df(x)
+        if abs(x_new - x) < epsilon:
+            return x_new
+        x = x_new
+        iteration += 1
+    return None
 
-# Початкове наближення
-x0 = 1.0
+# Використання методу Ньютона для інтервалу [-3, -2]
+result3 = newton_method(-3, 0.0001, 100)
+print("Результат методу Ньютона на інтервалі [-3, -2]:", result3)
 
-# Виклик методу Ньютона
-root = newton_method(f, df, x0)
-
-if root is not None:
-    print(f"Корінь рівняння: {root:.4f}")
-else:
-    print("Метод Ньютона не досягнув збіжності.")
+# Використання методу Ньютона для інтервалу [0, 1]
+result4 = newton_method(0, 0.0001, 100)
+print("Результат методу Ньютона на інтервалі [0, 1]:", result4)
