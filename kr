@@ -1,9 +1,14 @@
-[Start] -> (Відкриття веб-застосунку) -> (Перегляд головної сторінки) 
--> (Пошук товарів) -> (Перегляд результатів пошуку) -> [Decision]
-   -> [Yes] -> (Вибір товару для перегляду деталей) -> (Додавання товару до кошика) 
-      -> (Перегляд кошика) -> [Decision]
-         -> [Оформити замовлення] -> (Оформлення замовлення) -> (Введення даних доставки) 
-            -> (Вибір способу оплати) -> (Підтвердження замовлення) 
-            -> (Отримання підтвердження замовлення) -> [End]
-         -> [Повернутись до головної сторінки] -> (Перегляд головної сторінки)
-   -> [No] -> (Перегляд головної сторінки)
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+# Create a simple activity diagram for an e-commerce site in UML using draw.io, save as PNG
+
+# Set the image path
+img_path = "/mnt/data/Ecommerce_Activity_Diagram.png"
+
+# Display the image
+img = mpimg.imread(img_path)
+plt.figure(figsize=(10, 10))
+plt.imshow(img)
+plt.axis('off')  # Hide axes
+plt.show()
